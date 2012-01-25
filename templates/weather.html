@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Welcome to the 490 alpha weather service</title>
+	</head>
+	<body>
+		Welcome to the 490 alpha weather service - a SOAP client of <a href="http://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&ved=0CCoQFjAB&url=http%3A%2F%2Fws.cdyne.com%2FWeatherWS%2FWeather.asmx&ei=EyHYTuykCens0gGN7qjSDQ&usg=AFQjCNH7DaJQ_hRzBUAy7HL1fUuxDwlN2w">CDYNE's Weather Web Service</a>
+		<br>
+		Please enter a 5 digit zip code to get a 7-day weather forecast:
+    	<form method="POST" action="/weather">
+    		<div>{{ form.zipcode.label }}: {{ form.zipcode }}</div>
+		</form>
+    	{% if forecast %}
+    		{% if forecast.City %}
+				The weather in {{ forecast.City }}:<br>
+				{% for day in forecast.ForecastResult.Forecast %}
+					Date:{{ day.Date.date() }}<br>
+					Description:{{ day.Desciption }}<br>
+					Temperatures{{ day.Temperatures }}<br>
+					<br>
+				{% endfor %}
+			{% else %}
+				Are you sure that's a real US ZIP code?
+			{% endif %}
+		{% elif request.method == "POST" %}
+			Please enter a valid 5 digit ZIP code.
+		{% endif %}
+		<br><br>
+		<a href='/'>
+			go back to the main page
+		</a>
+
+<!-- Piwik --> 
+<script type="text/javascript">
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://stats.jundowon.com/" : "http://stats.jundowon.com/");
+document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+try {
+var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+piwikTracker.trackPageView();
+piwikTracker.enableLinkTracking();
+} catch( err ) {}
+</script><noscript><p><img src="http://stats.jundowon.com/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+<!-- End Piwik Tracking Code -->
+
+	</body>
+</html>
