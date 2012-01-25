@@ -1,4 +1,5 @@
 This is a simple demonstration of a SOAP server and WSDL generation using suds, rpclib, and flask.  It also relies on wtform for form handling, so it's a lot of dependencies that have dependencies to get it running.  "It works on my machine"
 
+this site can be viewed (as of 1/25/12) at 490a.com
 
 Copyright 2012 490a - All rights reserved, mostly because I haven't figured out what sort of open source license would be best yet and don't want to be liable for breaking the internet or something...  since it's obviously such a distinct possibility.  Also, don't take my logo!
